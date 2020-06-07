@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  flask:
+    build:
+      context: .
+      dockerfile: ./compose/local/flask/Dockerfile
+    image: news_local_flask
+    container_name: flask
+    volumes:
+      - ./app:/app
+    ports:
+      - "8000:5000"
+    command: ["python", "api.py"]
