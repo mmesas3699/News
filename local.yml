@@ -1,14 +1,36 @@
 version: '3'
 
 services:
-  flask:
+  api:
     build:
       context: .
-      dockerfile: ./compose/local/flask/Dockerfile
-    image: news_local_flask
-    container_name: flask
+      dockerfile: ./compose/local/django/Dockerfile
+    image: news_local_api
+    container_name: api_news
+    depends_on: 
+      - mongo
+    env_file:
+      - ./.envs/.local/.mongo
     volumes:
       - ./app:/app
     ports:
-      - "8000:5000"
-    command: ["python", "api.py"]
+      - "8000:8000"
+    command: ['python', 'manage.py', 'runserver', '0.0.0.0:8000']
+
+  scraper:
+    build:
+      context: .
+      dockerfile: ./compose/local/scraper/Dockerfile
+    image: news_local_scraper
+    depends_on:
+      - mongo
+    restart: always
+    volumes:
+      - ./scraper:/app/scraper/
+    command: ['python', 'main.py']
+
+  mongo:
+    image: mongo
+    restart: always
+    env_file:
+      - ./.envs/.local/.mongo

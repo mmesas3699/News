@@ -1,0 +1,19 @@
+pages:
+  - eltiempo:
+    name: El tiempo
+    url: https://eltiempo.com
+    article:
+      tag: div
+      class: article-details
+    title:
+      tag: a
+      class: title page-link
+    link:
+      tag: a
+      class: title page-link
+    epigraph:
+      tag: a
+      class: epigraph page-link
+  - xataka:
+    name: Xataka
+    url: https://xataka.com
