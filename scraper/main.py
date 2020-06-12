@@ -1,36 +1,33 @@
-import requests
+import logging
+
 import yaml
 
-from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup
+
+from extract import extract
+from transform import transform
 
 
-def _article_title(title):
-	if title is None:
-		return None
+logging.basicConfig(
+    format='%(levelname)s %(asctime)s: %(message)s',
+    level=logging.INFO)
 
 
-def extract(page)
-	url = page['url']
-	response = requests.get(url)
+def main():
+    logging.info('Begining process')
 
-	if response.status_code == 200:
-		return response.text
-	else:
-		print('Ocurrio un error')
+    try:
+        logging.info('Reading config file...')
+        config_file = open('./config.yml')
+        pages = yaml.load(config_file, Loader=yaml.FullLoader)
+    except Exception as e:
+        logging.error(f'An error has ocurred {e}')
 
+    for page in pages['pages']:
+        extracted = extract(page)
 
-def transformed(extracted, page):
-	html = BeautifulSoup(extracted)
+        if 'error' in extracted:
+            continue
 
-
-def main(pages):
-	for page in pages:
-		extracted = extract(page)
-		transformed = transform(extracted, page)
-
-
-if __name__ == '__main__':
-	config_file = open('./config.yml')
-	pages = yaml.load(config_file, Loader=yaml.FullLoader)
-
-	main(pages['pages'])
+        articles = transform(extracted, page)
+        print(articles)

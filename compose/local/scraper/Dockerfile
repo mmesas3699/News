@@ -1,7 +1,7 @@
 FROM python:3.6-alpine
 
-COPY requirements.txt /app/requirements.txt
-WORKDIR /app
+COPY ./compose/local/scraper/requirements.txt /scraper/requirements.txt
+WORKDIR /scraper
 RUN pip install -r requirements.txt
 
-COPY ./scraper/ /app
+COPY ./scraper/ /scraper

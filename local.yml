@@ -24,10 +24,9 @@ services:
     image: news_local_scraper
     depends_on:
       - mongo
-    restart: always
     volumes:
-      - ./scraper:/app/scraper/
-    command: ['python', 'main.py']
+      - ./scraper:/scraper
+    command: ['python', 'run.py']
 
   mongo:
     image: mongo
