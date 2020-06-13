@@ -10,7 +10,9 @@ def transform(extracted, page):
     logging.info(f'Cleaning data for: {page["name"]}...')
 
     html = BeautifulSoup(extracted['content'], 'html.parser')
-    articles = html.find_all(page['article']['tag'], class_=page['article']['class'])
+    articles = html.find_all(
+        page['article']['tag'],
+        class_=page['article']['class'])
     data = []
 
     for article in articles:

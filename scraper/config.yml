@@ -14,6 +14,18 @@ pages:
     epigraph:
       tag: a
       class: epigraph page-link
-  - xataka:
-    name: Xataka
-    url: https://xataka.com
+  - portafolio:
+    name: Portafolio
+    url: https://portafolio.co
+    article:
+      tag: article
+      class: sumario
+    title:
+      tag: h3
+      class: title
+    link:
+      tag: a
+      class: page-link
+    epigraph:
+      tag: p
+      class: epigraph

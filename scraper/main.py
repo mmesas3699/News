@@ -2,10 +2,9 @@ import logging
 
 import yaml
 
-# from bs4 import BeautifulSoup
-
 from extract import extract
 from transform import transform
+from load import load
 
 
 logging.basicConfig(
@@ -30,4 +29,4 @@ def main():
             continue
 
         articles = transform(extracted, page)
-        print(articles)
+        load(articles)
