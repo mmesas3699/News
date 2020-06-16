@@ -44,7 +44,7 @@ def transform(extracted, page):
 def _article_title(title):
     if title is None:
         return None
-    return title.text
+    return title.text.strip()
 
 
 def _article_link(link, base_url):
@@ -61,4 +61,4 @@ def _article_link(link, base_url):
 def _article_epigraph(epigraph, title):
     if epigraph is None:
         return _article_title(title)
-    return epigraph.text
+    return epigraph.text.strip()

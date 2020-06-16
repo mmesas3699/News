@@ -4,7 +4,7 @@ from main import logging
 
 
 def extract(page):
-    logging.info(f'Extracting for {page["name"]}')
+    logging.info(f'Extracting from: {page["name"]}')
 
     url = page['url']
     response = requests.get(url)
