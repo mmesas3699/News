@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Mongoengine
-from mongoengine import connect
+# import mongoengine
+
+import pymongo
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_mongoengine',
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +88,25 @@ DATABASES = {
     }
 }
 
+# MongoDB
+MONGODB_DATABASES = {
+    'default': {
+        'name': os.getenv('MONGO_INITDB_DATABASE'),
+        'host': 'mongo',
+        'port': 27017,
+        'user': os.getenv('MONGO_INITDB_ROOT_USERNAME'),
+        'password': os.getenv('MONGO_INITDB_ROOT_PASSWORD'),
+    }
+}
+
+# mongoengine.connect(
+#     host=f"mongodb://{MONGODB_DATABASES['default']['user']}:{MONGODB_DATABASES['default']['password']}@mongo:27017/?authSource=news"
+# )
 
 
+mongo_client = pymongo.MongoClient("mongodb://root:example@mongo:27017")
+db = mongo_client['news']
+collection = db['articles']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
