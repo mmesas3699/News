@@ -24,7 +24,6 @@ def main():
 
     for page in pages['pages']:
         extracted = extract(page)
-
         if 'error' in extracted:
             continue
 
