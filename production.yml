@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    image: news_production_api
+    container_name: api_news
+    depends_on: 
+      - mongo
+    env_file:
+      - ./.envs/.production/.mongo
+    volumes:
+      - ./news:/news
+    ports:
+      - "8000:8000"
+    command: /start
+
+  scraper:
+    build:
+      context: .
+      dockerfile: ./compose/local/scraper/Dockerfile
+    image: news_production_scraper
+    depends_on:
+      - mongo
+    env_file:
+      - ./.envs/.production/.mongo
+      - ./.envs/.production/.django
+    volumes:
+      - ./scraper:/scraper
+    command: ['python', 'run.py']
+
+  mongo:
+    image: mongo
+    restart: always
+    env_file:
+      - ./.envs/.production/.mongo
