@@ -12,9 +12,10 @@ def transform(extracted, page):
     html = BeautifulSoup(extracted['content'], 'html.parser')
     articles = html.find_all(
         page['article']['tag'],
-        class_=page['article']['class'])
-    data = []
+        class_=page['article']['class']
+    )
 
+    data = []
     for article in articles:
         logging.info(f'Getting article from: {page["name"]}')
 
