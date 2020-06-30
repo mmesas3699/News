@@ -22,9 +22,9 @@ def transform(extracted, page):
         _link = article.find(page['link']['tag'], class_=page['link']['class'])
         _epigraph = article.find(page['epigraph']['tag'], class_=page['epigraph']['class'])
 
-        title = _article_title(_title)
-        link = _article_link(_link, page['url'])
-        epigraph = _article_epigraph(_epigraph, _title)
+        title = _get_title(_title)
+        link = _get_link(_link, page['url'])
+        epigraph = _get_epigraph(_epigraph, _title)
 
         if title is None:
             continue
@@ -41,13 +41,13 @@ def transform(extracted, page):
     return data
 
 
-def _article_title(title):
+def _get_title(title):
     if title is None:
         return None
     return title.text.strip()
 
 
-def _article_link(link, base_url):
+def _get_link(link, base_url):
     if not link:
         return None
 
@@ -58,7 +58,7 @@ def _article_link(link, base_url):
     return base_url + uri
 
 
-def _article_epigraph(epigraph, title):
+def _get_epigraph(epigraph, title):
     if epigraph is None:
-        return _article_title(title)
+        return _get_title(title)
     return epigraph.text.strip()
