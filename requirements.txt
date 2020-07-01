@@ -1,16 +1,12 @@
-APScheduler==3.6.3
 asgiref==3.2.7
-beautifulsoup4==4.9.1
-bs4==0.0.1
 certifi==2020.4.5.2
 chardet==3.0.4
 Django==3.0.7
-django-rest-framework-mongoengine==3.4.1
+django-cors-headers==3.4.0
 djangorestframework==3.11.0
 flake8==3.8.3
 idna==2.9
 mccabe==0.6.1
-mongoengine==0.19.0
 pycodestyle==2.6.0
 pyflakes==2.2.0
 pymongo==3.10.1

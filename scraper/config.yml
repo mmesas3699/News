@@ -29,3 +29,19 @@ pages:
     epigraph:
       tag: p
       class: epigraph
+  - dinero:
+    name: Revista Dinero
+    url: https://www.dinero.com/
+    article:
+      tag: article
+      class: article
+    title:
+      tag: a
+      class: article-h-link
+    link:
+      tag: a
+      class: article-h-link
+    epigraph:
+      tag: p
+      class: 
+
