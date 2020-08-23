@@ -3,3 +3,4 @@ scrap/
 .ipynb_checkpoints/
 __pycache__/
 data/
+.envs/
